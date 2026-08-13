@@ -35,10 +35,8 @@ Linux-Security-Log-Analyzer/
 ├── log_analyzer.py
 ├── report_generator.py
 ├── sample_auth.log
+├── Linux-Security-Log-Analyzer.pptx
 ├── screenshots/
-│   ├── analyzer.png
-│   ├── security-report-summary.png
-│   └── security-report-details.png
 ├── .gitignore
 └── README.md
 ```
