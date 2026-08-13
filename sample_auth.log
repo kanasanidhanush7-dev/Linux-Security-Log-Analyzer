@@ -1,0 +1,10 @@
+Aug 13 10:20:15 server sshd[1234]: Failed password for dhanush from 192.168.1.50 port 52341 ssh2
+Aug 13 10:21:30 server sshd[1235]: Failed password for root from 192.168.1.51 port 52342 ssh2
+Aug 13 10:22:15 server sshd[1236]: Failed password for dhanush from 192.168.1.50 port 52343 ssh2
+Aug 13 10:23:15 server sshd[1237]: Failed password for dhanush from 192.168.1.50 port 52344 ssh2
+Aug 13 10:23:45 server sshd[1238]: Failed password for admin from 10.0.0.15 port 52345 ssh2
+Aug 13 10:24:15 server sshd[1239]: Failed password for dhanush from 192.168.1.50 port 52346 ssh2
+Aug 13 10:25:15 server sshd[1240]: Failed password for dhanush from 192.168.1.50 port 52347 ssh2
+Aug 13 10:26:15 server sshd[1241]: Failed password for dhanush from 192.168.1.50 port 52348 ssh2
+Aug 13 10:27:00 server sshd[1242]: ERROR: Authentication service error
+Aug 13 10:28:00 server systemd[500]: WARNING: Service restart required
