@@ -1,14 +1,14 @@
 # Linux Security Log Analyzer
 
-A Python-based security log analysis tool that analyzes Linux authentication logs, detects suspicious SSH login activity, and generates a security report.
+A Python-based security log analysis tool that analyzes Linux authentication logs, detects suspicious SSH login activity, and generates a structured security report.
 
 ## Features
 
 - Detects failed SSH login attempts
-- Extracts timestamps from authentication logs
+- Extracts login timestamps
 - Extracts source IP addresses
 - Counts failed login attempts by IP address
-- Detects suspicious IP addresses based on a configurable threshold
+- Identifies suspicious IP addresses
 - Extracts attempted usernames
 - Creates detailed SSH security events
 - Detects errors and warnings
@@ -22,8 +22,7 @@ A Python-based security log analysis tool that analyzes Linux authentication log
 - Regular Expressions (`re`)
 - Argparse
 - File Handling
-- Dictionaries
-- Lists
+- Lists and Dictionaries
 - Functions
 - Modular Python Programming
 
@@ -36,13 +35,17 @@ Linux-Security-Log-Analyzer/
 ├── log_analyzer.py
 ├── report_generator.py
 ├── sample_auth.log
+├── screenshots/
+│   ├── analyzer.png
+│   ├── security-report-summary.png
+│   └── security-report-details.png
 ├── .gitignore
 └── README.md
 ```
 
 ## How It Works
 
-The application follows three main steps:
+The application processes a Linux authentication log and generates a security report.
 
 ```text
 Linux Authentication Log
@@ -68,7 +71,7 @@ Linux Authentication Log
 - IP addresses
 - Usernames
 - Timestamps
-- Security events
+- SSH security events
 - Errors
 - Warnings
 
@@ -76,7 +79,7 @@ Linux Authentication Log
 
 The analyzer counts failed login attempts for each IP address.
 
-By default, an IP address with **5 or more failed attempts** is marked as suspicious.
+By default, an IP address with **5 or more failed attempts** is classified as suspicious.
 
 ### 3. Report Generation
 
@@ -93,39 +96,27 @@ By default, an IP address with **5 or more failed attempts** is marked as suspic
 
 ## How to Run
 
-### Clone the Repository
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/kanasanidhanush7-dev/Repository-name-Linux-Security-Log-Analyzer.git
+git clone https://github.com/kanasanidhanush7-dev/Linux-Security-Log-Analyzer.git
 ```
 
-### Move into the Project Directory
+### 2. Enter the Project Directory
 
 ```bash
-cd Repository-name-Linux-Security-Log-Analyzer
+cd Linux-Security-Log-Analyzer
 ```
 
-### Run the Analyzer
+### 3. Run the Analyzer
 
-The repository includes a safe sample authentication log for testing.
+The repository includes a sample authentication log for testing.
 
 ```bash
 python main.py --log "sample_auth.log"
 ```
 
-Then select:
-
-```text
-1. Analyze Log File
-2. Generate Security Report
-3. Exit
-```
-
-Select option `1` to analyze the log file.
-
-Select option `2` to generate the security report.
-
-## Example Output
+### 4. Use the Menu
 
 ```text
 ==================================================
@@ -135,45 +126,69 @@ Select option `2` to generate the security report.
 1. Analyze Log File
 2. Generate Security Report
 3. Exit
-
-Enter your choice: 1
-
-Analyzing log file...
-
-Analysis completed successfully!
 ```
 
-A security report is generated after selecting option `2`.
+Select:
 
-### Example Security Report
+```text
+1
+```
+
+to analyze the log file.
+
+Then select:
+
+```text
+2
+```
+
+to generate the security report.
+
+## Example Analysis
 
 ```text
 1. FAILED SSH LOGIN ATTEMPTS
 
 Total Failed Attempts: 8
 
-3. IP ATTACK FREQUENCY
+2. IP ATTACK FREQUENCY
 
 192.168.1.50 → 6 failed attempts
-192.168.1.51 → 1 failed attempts
-10.0.0.15 → 1 failed attempts
+192.168.1.51 → 1 failed attempt
+10.0.0.15 → 1 failed attempt
 
-4. SUSPICIOUS IP ADDRESSES
+3. SUSPICIOUS IP ADDRESSES
 
 🚨 192.168.1.50 → 6 failed attempts (SUSPICIOUS)
 ```
 
+## Screenshots
+
+### Analyzer Execution
+
+![Linux Security Log Analyzer](screenshots/analyzer.png)
+
+### Security Report Summary
+
+![Security Report Summary](screenshots/security-report-summary.png)
+
+### Security Report Details
+
+![Security Report Details](screenshots/security-report-details.png)
+
 ## Purpose
 
-This project was created as a practical Python and Linux security project to demonstrate:
+This project was developed as a practical Python and Linux security project to demonstrate:
 
-- Log analysis
+- Linux authentication log analysis
 - Basic security monitoring
-- Python file handling
+- Failed SSH login detection
+- IP-based security analysis
 - Regular expression processing
+- File handling
 - Data extraction
 - Security-event detection
-- Modular programming
+- Modular Python programming
 - Command-line application development
 
 ## Future Improvements
@@ -181,22 +196,21 @@ This project was created as a practical Python and Linux security project to dem
 Planned improvements include:
 
 - Real-time log monitoring
-- Multiple log format support
-- CSV/JSON report generation
+- Support for additional Linux log formats
+- CSV and JSON report generation
 - Email alerts for suspicious activity
 - IP geolocation
-- Graphical statistics
-- Improved command-line options
-- Additional Linux security event detection
+- Graphical security statistics
+- Additional command-line options
+- Detection of more Linux security events
 
 ## Author
 
 **K. Venkata Dhanush**
 
-GitHub:
-
+GitHub:  
 https://github.com/kanasanidhanush7-dev
 
-## License
+## Project Usage
 
-This project is for educational and portfolio purposes.
+This project is intended for educational and portfolio purposes.
