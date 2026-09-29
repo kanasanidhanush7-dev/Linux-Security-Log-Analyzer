@@ -4,7 +4,7 @@ from log_analyzer import analyze_log
 from report_generator import generate_report
 
 
-report_file = r"C:\Users\kanas\Downloads\report.txt"
+report_file = "report.txt"
 
 
 def get_arguments():
@@ -24,12 +24,9 @@ def get_arguments():
 
 def main():
 
-    # Get command-line arguments
     args = get_arguments()
 
-    # Get log file path
     log_file = args.log
-
     result = None
 
     while True:
@@ -38,28 +35,43 @@ def main():
         print("       LINUX SECURITY LOG ANALYZER")
         print("=" * 50)
 
-        print("\n1. Analyze Log File")
-        print("2. Generate Security Report")
-        print("3. Exit")
+        print("\n1. Analyze Sample Log")
+        print("2. Analyze Real Ubuntu Log")
+        print("3. Generate Security Report")
+        print("4. Exit")
 
         choice = input("\nEnter your choice: ")
 
         if choice == "1":
 
-            print("\nAnalyzing log file...")
+            print("\nAnalyzing sample log file...")
 
             result = analyze_log(log_file)
 
             if result is not None:
-                print("\nAnalysis completed successfully!")
+                print("\nSample log analysis completed successfully!")
             else:
                 print("\nAnalysis failed.")
 
         elif choice == "2":
 
+            real_log = "/var/log/auth.log"
+
+            print("\nAnalyzing real Ubuntu authentication log...")
+            print(f"Log file: {real_log}")
+
+            result = analyze_log(real_log)
+
+            if result is not None:
+                print("\nReal Ubuntu log analysis completed successfully!")
+            else:
+                print("\nAnalysis failed.")
+
+        elif choice == "3":
+
             if result is None:
 
-                print("\nPlease analyze the log file first.")
+                print("\nPlease analyze a log file first.")
 
             else:
 
@@ -73,14 +85,14 @@ def main():
                 print("\nSecurity report generated successfully!")
                 print(f"Report saved to:\n{report_file}")
 
-        elif choice == "3":
+        elif choice == "4":
 
             print("\nExiting program...")
             break
 
         else:
 
-            print("\nInvalid choice! Please select 1, 2, or 3.")
+            print("\nInvalid choice! Please select 1, 2, 3, or 4.")
 
 
 if __name__ == "__main__":

@@ -18,7 +18,11 @@ def analyze_log(log_file):
 
             for line in file:
 
-                if "Failed password" in line:
+                # -----------------------------------------
+                # FAILED SSH LOGIN
+                # -----------------------------------------
+
+                if "sshd" in line and "Failed password" in line:
 
                     failed_attempts += 1
 
@@ -26,15 +30,26 @@ def analyze_log(log_file):
                     ip_address = "Unknown"
                     username = "Unknown"
 
-                    # Extract timestamp
-                    timestamp = re.search(
+                    # Old format:
+                    # Aug 13 10:20:15
+                    old_timestamp = re.search(
                         r"^(\w{3} \d{2} \d{2}:\d{2}:\d{2})",
                         line
                     )
 
-                    if timestamp:
-                        timestamp_value = timestamp.group(1)
-                        timestamps.append(timestamp_value)
+                    # New Ubuntu ISO format:
+                    # 2026-09-29T18:20:15.123456+05:30
+                    new_timestamp = re.search(
+                        r"^(\d{4}-\d{2}-\d{2}T[^\s]+)",
+                        line
+                    )
+
+                    if new_timestamp:
+                        timestamp_value = new_timestamp.group(1)
+                    elif old_timestamp:
+                        timestamp_value = old_timestamp.group(1)
+
+                    timestamps.append(timestamp_value)
 
                     # Extract IP address
                     ip = re.search(
@@ -54,7 +69,7 @@ def analyze_log(log_file):
 
                     # Extract username
                     user = re.search(
-                        r"Failed password for (?:user )?(\w+)",
+                        r"Failed password for (?:invalid user )?(?:user )?(\w+)",
                         line
                     )
 
@@ -71,12 +86,20 @@ def analyze_log(log_file):
 
                     security_events.append(event)
 
-                # Detect errors
-                if "error" in line.lower():
+                # -----------------------------------------
+                # ERRORS
+                # -----------------------------------------
+
+                if " error:" in line.lower() or "failed to" in line.lower():
+
                     errors.append(line.strip())
 
-                # Detect warnings
-                if "warning" in line.lower():
+                # -----------------------------------------
+                # WARNINGS
+                # -----------------------------------------
+
+                if " warning:" in line.lower():
+
                     warnings.append(line.strip())
 
     except FileNotFoundError:
@@ -87,6 +110,7 @@ def analyze_log(log_file):
     except PermissionError:
 
         print("\nERROR: Permission denied while reading log file.")
+        print("Try running the program with sudo.")
         return None
 
     except Exception as e:
